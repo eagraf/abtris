@@ -24,10 +24,6 @@ func TestReverse(t *testing.T) {
 }
 
 func FuzzReverse(f *testing.F) {
-	testcases := []string{"Hello, world", " ", "!12345"}
-	for _, tc := range testcases {
-		f.Add(tc) // Use f.Add to provide a seed corpus
-	}
 	f.Fuzz(func(t *testing.T, orig string) {
 		rev := fuzz.Reverse(orig)
 		doubleRev := fuzz.Reverse(rev)
