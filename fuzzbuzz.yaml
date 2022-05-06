@@ -1,0 +1,5 @@
+main:
+  language: go
+  docker_image: golang:1.18
+  steps:
+    - run: go test -fuzz=Fuzz
