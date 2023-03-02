@@ -1,0 +1,12 @@
+version: 2
+mergeable:
+  - when: pull_request.*, pull_request_review.*
+    validate:
+      - do: commit
+        message:
+          regex: ^[A-Za-z0-9._%+-]+@rippling.com$
+          message_type: author_email
+      - do: commit
+        message:
+          regex: ^[A-Za-z0-9._%+-]+@rippling.com$
+          message_type: committer_email
