@@ -5,8 +5,6 @@ mergeable:
       - do: commit
         message:
           regex: ^[A-Za-z0-9._%+-]+@rippling.com$
-          message_type: author_email
       - do: commit
         message:
           regex: ^[A-Za-z0-9._%+-]+@rippling.com$
-          message_type: committer_email
