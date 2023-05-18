@@ -1,0 +1,40 @@
+name: Force Merge Pull Request
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        type: choice
+        options:
+        - rippling-main
+        - rippling-webapp
+        required: true
+      pull_request_number:
+        description: 'Pull Request Number. Eg: 42190'
+        type: integer
+        required: true
+      reason:
+        description: 'Reason Type'
+        type: choice
+        options:
+        - Incident Fix
+        - Bypass Codeowner Review
+        - Unrelated Test Failures
+        - Other
+      notes:
+        description: 'Reason for Force Merge (Add link to issue for context)'
+        required: true
+        type: string
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    name: Force Merge PR
+    env:
+      REPOSITORY: ${{ inputs.repository }}
+      PULL_REQUEST: ${{ inputs.pull_request_number }}
+      REASON: ${{ inputs.reason }}
+      NOTES: ${{ inputs.notes }}
+    steps:
+      - name: Clone the Repo
+        uses: actions/checkout@v3
